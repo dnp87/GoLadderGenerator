@@ -18,8 +18,8 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
     var step = (that.canvas.width - that.gridOffset*2)/19;
 
 	ctx.beginPath();
-	ctx.moveTo(that.gridOffset, that.gridOffset);
-	ctx.lineTo(that.canvas.width - that.gridOffset, that.gridOffset);
+	ctx.moveTo(10.5, 10.5);
+	ctx.lineTo(290, 10.5);
 	ctx.stroke();		
 	ctx.closePath();
 	/*for( var i = 0; i < 19; i++ ) {
