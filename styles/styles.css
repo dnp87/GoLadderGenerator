@@ -1,3 +1,5 @@
 #myCanvas{
 	border: 1px Black solid;
+	width: 500px;
+	height: 500px;
 }
