@@ -22,12 +22,20 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 	
 	ctx.fillStyle = "#000000";
 	ctx.lineWidth = 1;
-    var step = Math.floor((that.canvas.width - that.gridOffset*2)/19);
+    var step = (that.canvas.width - that.gridOffset*2)/17;
 	
 	for( var i = 0; i < 19; i++ ) {
 		ctx.beginPath();
 		ctx.moveTo(that.gridOffset, that.gridOffset + step*i + 0.5);
 		ctx.lineTo(that.canvas.width - that.gridOffset, that.gridOffset + step*i  + 0.5);
+		ctx.stroke();		
+		ctx.closePath();
+	}
+	
+	for( var i = 0; i < 19; i++ ) {
+		ctx.beginPath();
+		ctx.moveTo(that.gridOffset + step*i + 0.5, that.gridOffset );
+		ctx.lineTo(that.gridOffset + step*i  + 0.5, that.canvas.height - that.gridOffset);
 		ctx.stroke();		
 		ctx.closePath();
 	}
