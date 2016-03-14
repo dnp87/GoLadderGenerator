@@ -46,7 +46,7 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 	for( var i = 0; i < 3; i++ ) {	
 		for( var j = 0; j < 3; j++ ) {
 			ctx.beginPath();
-			ctx.arc(that.gridOffset + step*(3+j*6) + 0.5, that.gridOffset + step*(3+i*6)   + 0.5, 4, 0, 2*Math.PI);
+			ctx.arc(that.gridOffset + step*(3+j*6) + 0.5, that.gridOffset + step*(3+i*6)   + 0.5, 2, 0, 2*Math.PI);
 			ctx.stroke();
 		}
 	}
