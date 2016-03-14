@@ -22,9 +22,10 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 	
 	ctx.fillStyle = "#000000";
 	ctx.lineWidth = 1;
-    var step = (that.canvas.width - that.gridOffset*2)/17;
+    var step = (that.canvas.width - that.gridOffset*2)/18;
 	
-	for( var i = 0; i < 19; i++ ) {
+	//horizonal lines
+	for( var i = 0; i < 20; i++ ) {
 		ctx.beginPath();
 		ctx.moveTo(that.gridOffset, that.gridOffset + step*i + 0.5);
 		ctx.lineTo(that.canvas.width - that.gridOffset, that.gridOffset + step*i  + 0.5);
@@ -32,11 +33,23 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 		ctx.closePath();
 	}
 	
-	for( var i = 0; i < 19; i++ ) {
+	//vertical lines
+	for( var i = 0; i < 20; i++ ) {
 		ctx.beginPath();
 		ctx.moveTo(that.gridOffset + step*i + 0.5, that.gridOffset );
 		ctx.lineTo(that.gridOffset + step*i  + 0.5, that.canvas.height - that.gridOffset);
 		ctx.stroke();		
 		ctx.closePath();
 	}
+		
+	//star points
+	/*ctx.beginPath();
+	ctx.arc(that.gridOffset + step*3 + 0.5, that.gridOffset + step*3  + 0.5, 4, 0, 2*Math.PI);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.arc(that.gridOffset + step*3 + 0.5, that.gridOffset + step*9  + 0.5, 4, 0, 2*Math.PI);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.arc(that.gridOffset + step*3 + 0.5, that.gridOffset + step*14  + 0.5, 4, 0, 2*Math.PI);
+	ctx.stroke();*/
 }
