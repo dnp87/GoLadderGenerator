@@ -43,13 +43,11 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 	}
 		
 	//star points
-	/*ctx.beginPath();
-	ctx.arc(that.gridOffset + step*3 + 0.5, that.gridOffset + step*3  + 0.5, 4, 0, 2*Math.PI);
-	ctx.stroke();
-	ctx.beginPath();
-	ctx.arc(that.gridOffset + step*3 + 0.5, that.gridOffset + step*9  + 0.5, 4, 0, 2*Math.PI);
-	ctx.stroke();
-	ctx.beginPath();
-	ctx.arc(that.gridOffset + step*3 + 0.5, that.gridOffset + step*14  + 0.5, 4, 0, 2*Math.PI);
-	ctx.stroke();*/
+	for( var i = 0; i < 3; i++ ) {	
+		for( var j = 0; j < 3; j++ ) {
+			ctx.beginPath();
+			ctx.arc(that.gridOffset + step*(3+j*6) + 0.5, that.gridOffset + step*(3+i*6)   + 0.5, 4, 0, 2*Math.PI);
+			ctx.stroke();
+		}
+	}
 }
