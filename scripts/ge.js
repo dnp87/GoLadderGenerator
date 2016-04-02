@@ -3,7 +3,8 @@ if (!$pr) {
 }
 
 $pr.GraphicsEngine = function(cnv, width, height, gridOffset) {	
-	this.canvas = cnv;	
+	this.canvas = cnv;
+	this.boardCanvasId = cnv.id;
 	if( width ) {
 		this.canvas.width = width;
 	}
@@ -53,10 +54,12 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 }
 
 $pr.GraphicsEngine.prototype.getBoardCoords = function(e) {
+
+	var that = this;
 	var getPosition = function(event) {
 		var x = new Number();
 		var y = new Number();
-		var canvas = document.getElementById("myCanvas");
+		var canvas = document.getElementById(that.boardCanvasId);
 		var multX = canvas.width/canvas.clientWidth;
 		var multY = canvas.height/canvas.clientHeight;
 
