@@ -5,6 +5,6 @@ $(document).ready(function()
 	ge.drawBoard();
 	
 	$(cnv).click(function(e) {
-		alert(ge.getBoardCoords(e));
+		var coords = ge.getBoardCoords(e);
 	})
 });

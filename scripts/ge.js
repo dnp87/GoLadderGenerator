@@ -80,6 +80,18 @@ $pr.GraphicsEngine.prototype.getBoardCoords = function(e) {
 		return { "x" : x, "y" : y }
   }
 
+  var that = this;
+  var step = (that.canvas.width - that.gridOffset*2)/18;//implying on square canvas
+
   var coords = getPosition(e);
-  return coords;
+  coords.x = Math.round(coords.x / step);
+  coords.y = Math.round(coords.y / step);
+  //alert("x: " + coords.x + ", y: " + coords.y);
+  if( coords.x >= 1 && coords.x <= 19 && coords.y >= 1 && coords.y <= 19) {
+    return coords; 
+  }
+  else
+  {
+    return null;
+  }
 }
