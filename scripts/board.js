@@ -16,18 +16,18 @@ $pr.BoardPosition = function() {
 }
 
 $pr.BoardPosition.prototype.getPosition = function(x, y) {
-	return this.body[x][y];
+	return this.body[x-1][y-1];
 }
 
-$pr.BoardPosition.prototype.placeStone = function(x, y, stoneType) {
+//editor mode, no rule enforcement
+$pr.BoardPosition.prototype.editStone = function(x, y, stoneType) {
 	var that = this;
-	if(stoneType != that.proto.BlackStone && stoneType != that.proto.WhiteStone) {
+	if(stoneType != $pr.BoardPosition.BlackStone && stoneType != $pr.BoardPosition.WhiteStone) {
 		alert('invalid stone type');
 	}
 	else
 	{
-		//todo: add other function or place complete logic here
-		that.body[x][y] = stoneType;
+		that.body[x-1][y-1] = stoneType;
 	}
 }
 

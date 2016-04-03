@@ -7,5 +7,8 @@ $(document).ready(function()
 	
 	$(cnv).click(function(e) {
 		var coords = ge.getBoardCoords(e);
+		if( coords ) {
+			board.editStone(coords.x, coords.y, $pr.BoardPosition.BlackStone);
+		}
 	})
 });
