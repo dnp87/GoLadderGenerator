@@ -8,7 +8,12 @@ $(document).ready(function()
 	$(cnv).click(function(e) {
 		var coords = ge.getBoardCoords(e);
 		if( coords ) {
-			board.editStone(coords.x, coords.y, $pr.BoardPosition.BlackStone);
+			var stoneType = $(":input[name='editor_stonecolor']:checked").val();
+			if( board.getPosition(coords.x, coords.y) != $pr.BoardPosition.Empty )
+			{
+				stoneType = $pr.BoardPosition.Empty;
+			}
+			board.editStone(coords.x, coords.y, stoneType);
 			ge.drawBoard();
 			ge.drawStones(board);
 		}

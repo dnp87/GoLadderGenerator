@@ -22,7 +22,9 @@ $pr.BoardPosition.prototype.getPosition = function(x, y) {
 //editor mode, no rule enforcement
 $pr.BoardPosition.prototype.editStone = function(x, y, stoneType) {
 	var that = this;
-	if(stoneType != $pr.BoardPosition.BlackStone && stoneType != $pr.BoardPosition.WhiteStone) {
+	if(stoneType != $pr.BoardPosition.BlackStone
+		&& stoneType != $pr.BoardPosition.WhiteStone
+		&& stoneType != $pr.BoardPosition.Empty) {
 		alert('invalid stone type');
 	}
 	else
