@@ -21,6 +21,7 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 	var that = this;
 	var ctx = that.canvas.getContext("2d");
 	ctx.fillStyle = "#FFBB68";
+	ctx.strokeStyle = "#000000";
 	ctx.fillRect(0, 0, that.canvas.width, that.canvas.height);
 	
 	ctx.fillStyle = "#000000";
@@ -64,12 +65,15 @@ $pr.GraphicsEngine.prototype.drawStones = function(position) {
 			if( pt ) {
 				if( pt == $pr.BoardPosition.BlackStone) {
 					ctx.fillStyle = "#000000";
+					ctx.strokeStyle = "#FFFFFF";
 				}
 				if( pt == $pr.BoardPosition.WhiteStone) {
 					ctx.fillStyle = "#FFFFFF";	
+					ctx.strokeStyle = "#000000";
 				}
 				ctx.beginPath();
 				ctx.arc(that.gridOffset + that.lineStep*(x-1) + 0.5, that.gridOffset + that.lineStep*(y-1)  + 0.5, that.lineStep/2, 0, 2*Math.PI);
+				ctx.fill();
 				ctx.stroke();
 			}
 		};
