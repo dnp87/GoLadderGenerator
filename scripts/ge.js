@@ -5,6 +5,7 @@ if (!$pr) {
 $pr.GraphicsEngine = function(cnv, width, height, gridOffset) {	
 	this.canvas = cnv;
 	this.boardCanvasId = cnv.id;
+
 	if( width ) {
 		this.canvas.width = width;
 	}
@@ -12,7 +13,8 @@ $pr.GraphicsEngine = function(cnv, width, height, gridOffset) {
 		this.canvas.height = height;
 	}
 	
-	this.gridOffset = gridOffset;	
+	this.gridOffset = gridOffset;
+	this.lineStep = (this.canvas.width - this.gridOffset*2)/18;
 }
 
 $pr.GraphicsEngine.prototype.drawBoard = function() {
@@ -51,6 +53,27 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 			ctx.stroke();
 		}
 	}
+}
+
+$pr.GraphicsEngine.prototype.drawStones = function(position) {
+	var that = this;
+	var ctx = that.canvas.getContext("2d");
+	for (var x = 1; x <= 19; x++) {
+		for (var y = 1; y <= 19; y++) {
+			var pt = position.getPosition(x, y)
+			if( pt ) {
+				if( pt == $pr.BoardPosition.BlackStone) {
+					ctx.fillStyle = "#000000";
+				}
+				if( pt == $pr.BoardPosition.WhiteStone) {
+					ctx.fillStyle = "#FFFFFF";	
+				}
+				ctx.beginPath();
+				ctx.arc(that.gridOffset + that.lineStep*(x-1) + 0.5, that.gridOffset + that.lineStep*(y-1)  + 0.5, that.lineStep/2, 0, 2*Math.PI);
+				ctx.stroke();
+			}
+		};
+	};
 }
 
 $pr.GraphicsEngine.prototype.getBoardCoords = function(e) {

@@ -9,6 +9,8 @@ $(document).ready(function()
 		var coords = ge.getBoardCoords(e);
 		if( coords ) {
 			board.editStone(coords.x, coords.y, $pr.BoardPosition.BlackStone);
+			ge.drawBoard();
+			ge.drawStones(board);
 		}
 	})
 });
