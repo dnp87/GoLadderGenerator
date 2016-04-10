@@ -35,9 +35,24 @@ $pr.BoardPosition.prototype.editStone = function(x, y, stoneType) {
 	}
 }
 
+$pr.BoardPosition.prototype.StoneInAnyGroup = function(x, y) {
+	var that = this;
+	for( var i = 0; i < that.groups.length; i++ ) {
+		if( that.groups[i].hasStone(x,y) )
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 //calculate groups from an empty board
 $pr.BoardPosition.prototype.CalcGroups = function() {
 
+}
+
+$pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(x,y) {
+	//recalculate existing groups
 }
 
 $pr.BoardPosition.Empty = '';
