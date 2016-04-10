@@ -13,9 +13,16 @@ $(document).ready(function()
 			{
 				stoneType = $pr.BoardPosition.Empty;
 			}
+			debugger;
 			board.editStone(coords.x, coords.y, stoneType);
 			ge.drawBoard();
 			ge.drawStones(board);
 		}
 	})
+
+	$("#place_ladder_btn").click(function() {
+		board.CreateLadder();
+		ge.drawBoard();
+		ge.drawStones(board);
+	});
 });

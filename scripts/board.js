@@ -17,6 +17,10 @@ $pr.BoardPosition = function() {
 	}
 }
 
+$pr.BoardPosition.Empty = '';
+$pr.BoardPosition.BlackStone = 'B';
+$pr.BoardPosition.WhiteStone = 'W';
+
 $pr.BoardPosition.prototype.getPosition = function(x, y) {
 	return this.body[x-1][y-1];
 }
@@ -48,13 +52,26 @@ $pr.BoardPosition.prototype.StoneInAnyGroup = function(x, y) {
 
 //calculate groups from an empty board
 $pr.BoardPosition.prototype.CalcGroups = function() {
-
+	var that = this;
+	for( var x = 1; x <= that.body.length; x++ ) {
+		for( var y = 1; y < that.body[x-1].length; y++ ) {
+			//var st = getPosition(x, y);
+			//todo
+		}
+	}
 }
 
 $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(x,y) {
 	//recalculate existing groups
 }
 
-$pr.BoardPosition.Empty = '';
-$pr.BoardPosition.BlackStone = 'B';
-$pr.BoardPosition.WhiteStone = 'W';
+$pr.BoardPosition.prototype.CreateLadder = function() {
+	var that = this;
+	that.editStone(4, 15, $pr.BoardPosition.BlackStone);
+	that.editStone(3, 16, $pr.BoardPosition.BlackStone);
+	that.editStone(4, 17, $pr.BoardPosition.BlackStone);
+	that.editStone(5, 17, $pr.BoardPosition.BlackStone);
+
+	that.editStone(4, 16, $pr.BoardPosition.WhiteStone);
+	that.editStone(5, 16, $pr.BoardPosition.WhiteStone);
+}
