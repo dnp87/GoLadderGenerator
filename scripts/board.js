@@ -6,7 +6,9 @@ if (!$pr) {
 
 $pr.BoardPosition = function() {
 	var that = this;
-	that.body = new Array(19);
+	that.body = new Array(19); //simple cell-by-cell presentation
+	that.groups = new Array();
+
 	for(var i = 0; i < 19; i++ ) {
 		that.body[i] = new Array(19);
 		for (var j = 0; j < that.body[i].length; j++) {
@@ -31,6 +33,11 @@ $pr.BoardPosition.prototype.editStone = function(x, y, stoneType) {
 	{
 		that.body[x-1][y-1] = stoneType;
 	}
+}
+
+//calculate groups from an empty board
+$pr.BoardPosition.prototype.CalcGroups = function() {
+
 }
 
 $pr.BoardPosition.Empty = '';
