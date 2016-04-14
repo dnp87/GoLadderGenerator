@@ -55,8 +55,20 @@ $pr.BoardPosition.prototype.CalcGroups = function() {
 	var that = this;
 	for( var x = 1; x <= that.body.length; x++ ) {
 		for( var y = 1; y < that.body[x-1].length; y++ ) {
-			//var st = getPosition(x, y);
-			//todo
+      var st = that.getPosition(x, y);
+      if (st) {
+        var groupFound = false;
+        for( var g = 0; g < that.groups.length; g++ ) {
+          var group = that.groups[g];
+          if(group.color == st && group.adjacentTo(x, y)) {
+            group.addStone(x, y);
+            groupFound = true;            
+          }
+        }
+        if(!groupFound) {
+          that.groups.push(new $pr.StoneGroup(st, x, y));
+        }
+      }
 		}
 	}
 }
