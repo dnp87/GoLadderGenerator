@@ -2,8 +2,12 @@ if (!$pr) {
     var $pr = {};
 }
 
-$pr.StoneGroup = function() {
+$pr.StoneGroup = function(color) {
 	var that = this;
+	that.color = color;
+	if(color != $pr.BoardPosition.BlackStone && color != $pr.BoardPosition.WhiteStone ) {
+		throw "Valid group color not specified";
+	}
 	that.body = new Array(); //list of stone coords
 }
 
