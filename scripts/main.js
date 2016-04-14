@@ -20,10 +20,10 @@ $(document).ready(function()
     }
   })
 
-  $("#place_ladder_btn").click(function() {
-    board.CreateLadder();
-    board.CalcGroups(); //todo: move to start of solve mode    
-    ge.drawBoard();
-    ge.drawStones(board);
-  });
+  $("#start_solving_btn").click(function() {    
+  })
+
+  board.CreateLadder();
+  ge.drawBoard();
+  ge.drawStones(board);
 });
