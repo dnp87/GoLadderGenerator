@@ -1,3 +1,6 @@
+var _mode = 0;//edit
+var _currSolveType = $pr.BoardPosition.BlackStone;
+
 $(document).ready(function()
 {
   var cnv = $("#boardCanvas")[0];
@@ -8,19 +11,35 @@ $(document).ready(function()
   $(cnv).click(function(e) {
     var coords = ge.getBoardCoords(e);
     if( coords ) {
-      var stoneType = $(":input[name='editor_stonecolor']:checked").val();
-      if( board.getPosition(coords.x, coords.y) != $pr.BoardPosition.Empty )
-      {
-        stoneType = $pr.BoardPosition.Empty;
+      if( _mode == 0 ) {
+        placeEditStone(coords);
       }
-      debugger;
-      board.editStone(coords.x, coords.y, stoneType);
-      ge.drawBoard();
-      ge.drawStones(board);
+      else {
+        placeSolveStone(coords);
+      }
     }
   })
 
-  $("#start_solving_btn").click(function() {    
+  function placeEditStone(coords)
+  {
+    var stoneType = $(":input[name='editor_stonecolor']:checked").val();
+    if( board.getPosition(coords.x, coords.y) != $pr.BoardPosition.Empty )
+    {
+      stoneType = $pr.BoardPosition.Empty;
+    }
+    board.editStone(coords.x, coords.y, stoneType);
+    ge.drawBoard();
+    ge.drawStones(board);
+  }
+
+  function placeSolveStone(coords)
+  {
+    alert('todo');
+  }
+
+  $("#start_solving_btn").click(function() {
+    _mode = 1;//solve
+    board.CalcGroups();
   })
 
   board.CreateLadder();
