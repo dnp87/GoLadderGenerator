@@ -21,6 +21,11 @@ $pr.BoardPosition.Empty = '';
 $pr.BoardPosition.BlackStone = 'B';
 $pr.BoardPosition.WhiteStone = 'W';
 
+$pr.BoardPosition.prototype.clone = function() {
+  var that = this;
+  return $.extend(true, {}, that);
+}
+
 $pr.BoardPosition.prototype.getPosition = function(x, y) {
 	return this.body[x-1][y-1];
 }
@@ -62,7 +67,7 @@ $pr.BoardPosition.prototype.CalcGroups = function() {
           var group = that.groups[g];
           if(group.color == st && group.adjacentTo(x, y)) {
             group.addStone(x, y);
-            groupFound = true;            
+            groupFound = true;
           }
         }
         if(!groupFound) {
