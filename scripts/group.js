@@ -16,7 +16,32 @@ $pr.StoneGroup = function(color, x, y) {
 
 //get dame count for group on a given board
 $pr.StoneGroup.prototype.getDameCount = function(board) {
+  var accounted = new Array();
 
+  for( var i = 0; i < that.body.length; i++ ) {
+    var el = that.body[i];
+    var adjPoints = new Array();
+    if( el.x > 1) {
+      adjPoints.push(new { x: el.x - 1, y: el.y });
+    }
+    if( el.x < 19) {
+      adjPoints.push(new { x: el.x + 1, y: el.y });
+    }
+    if( el.y > 1) {
+      adjPoints.push(new { x: el.x, y: el.y - 1 });
+    }
+    if( el.y < 19) {
+      adjPoints.push(new { x: el.x, y: el.y + 1 });
+    }
+
+    for( var j = 0; j < adjPoints.length; j++ )
+    {
+      var p = adjPoints[j];
+      /*if(accounted.contains) { //todo
+
+      }*/
+    }
+  }
 }
 
 //checks whether current group is the one running away in a ladder
