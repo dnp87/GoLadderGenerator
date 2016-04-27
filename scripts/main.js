@@ -1,10 +1,15 @@
+var state;
+var cng;
+var ge;
+var board;
+
 $(document).ready(function()
 {
-  var state = new $pr.State();
-  var cnv = $("#boardCanvas")[0];
-  var ge = new $pr.GraphicsEngine(cnv, 600, 600, 30);
+  state = new $pr.State();
+  cnv = $("#boardCanvas")[0];
+  ge = new $pr.GraphicsEngine(cnv, 600, 600, 30);
   ge.drawBoard();
-  var board = new $pr.BoardPosition();
+  board = new $pr.BoardPosition();
 
   $(cnv).click(function(e) {
     var coords = ge.getBoardCoords(e);
@@ -45,6 +50,7 @@ function placeEditStone(coords)
 function placeSolveStone(coords)
 {
   alert('todo');
+  state.toggleStone();
 }
 
 function switchUi(mode)
