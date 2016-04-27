@@ -5,6 +5,7 @@
 		<script type="text/javascript" src="./scripts/group.js"></script>
 		<script type="text/javascript" src="./scripts/board.js"></script>
 		<script type="text/javascript" src="./scripts/ge.js"></script>
+		<script type="text/javascript" src="./scripts/state.js"></script>
 		<script type="text/javascript" src="./scripts/main.js"></script>
 		<title>Go Ladder Generator</title>
 	</head>
@@ -12,14 +13,14 @@
 		<canvas id="boardCanvas">
 		</canvas>
 		<div id="modeMessage">Initial position editor</div>
-		<div>
+		<div class="editor_specific">
 			<input type="radio" name="editor_stonecolor" id="editor_stonecolor_b" value="B" checked="checked">
 			<label for="editor_stonecolor_b">Black</label>
 			<input type="radio" name="editor_stonecolor" id="editor_stonecolor_w" value="W">
 			<label for="editor_stonecolor_w">White</label>
 		</div>
 		<div>
-			<button id="start_solving_btn">Start solving</button>
+			<button id="start_solving_btn" class="editor_specific">Start solving</button>
 		</div>
 	</body>
 </html>
