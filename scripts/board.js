@@ -129,11 +129,10 @@ $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(stone, color) {
   }
 
   //now delete groups with 0 dame
-  debugger;
   while(true) {
     var removeOccured = false;
     for(var g = 0; g < that.groups.length; g++) {
-      if(that.groups[i].getDameCount() == 0)
+      if(that.groups[i].getDameCount(that) == 0)
       {
         that.removeGroup(that.groups[i]);
         continue;

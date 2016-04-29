@@ -15,7 +15,6 @@ $pr.StoneGroup = function(color, x, y) {
 }
 
 $pr.StoneGroup.MergeGroups = function(groups) {
-  debugger;
   var result = new $pr.StoneGroup(groups[0].color);
 
   for(var i = 0; i < groups.length; i++) {
@@ -36,6 +35,10 @@ $pr.StoneGroup.CompareStone = function (x, y)
 
 //get dame count for group on a given board
 $pr.StoneGroup.prototype.getDameCount = function(board) {
+  if(!board) {
+    console.log("board position not specified");
+    return;
+  }
   var that = this;
   var accounted = new Array();
   var result = 0;
