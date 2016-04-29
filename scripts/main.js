@@ -18,7 +18,7 @@ $(document).ready(function()
         placeEditStone(coords);
       }
       else {
-        placeSolveStone(coords);
+        placeSolveStone(coords, state.currStoneType);
       }
     }
   })
@@ -47,10 +47,12 @@ function placeEditStone(coords)
   ge.drawStones(board);
 }
 
-function placeSolveStone(coords)
+function placeSolveStone(coords, color)
 {
-  alert('todo');
+  board.ReCalcGroupsAfterStone(coords, color);
   state.toggleStone();
+  ge.drawBoard();
+  ge.drawStones(board);
 }
 
 function switchUi(mode)

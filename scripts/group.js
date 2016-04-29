@@ -59,6 +59,7 @@ $pr.StoneGroup.prototype.getDameCount = function(board) {
 
 //checks whether current group is the one running away in a ladder
 $pr.StoneGroup.prototype.isLadderGroup = function() {
+  //hardcode for now, maybe forever :)
 	return hasStone(4, 16);
 }
 

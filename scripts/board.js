@@ -41,6 +41,17 @@ $pr.BoardPosition.prototype.removeGroup = function(group)
   }
 }
 
+$pr.BoardPosition.prototype.addGroup = function(group)
+{
+  var that = this;
+  for( var i = 0; i < group.body.length; i++ )
+  {
+    var p = group.body[i];
+    that.editStone(p.x, p.y, group.color);
+  }
+  that.groups.push(group);
+}
+
 $pr.BoardPosition.prototype.getPosition = function(x, y) {
 	return this.body[x-1][y-1];
 }
@@ -93,9 +104,28 @@ $pr.BoardPosition.prototype.CalcGroups = function() {
 	}
 }
 
-$pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(x,y) {
-	//recalculate existing groups
-  groups.pus
+//recalculate existing groups after stone placement
+$pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(stone, color) {
+  var that = this;
+
+  //debugger;
+  //choosing groups of the same color adjacent to the new stone;
+  var adjacentSameColorGroups = that.groups.filter(function(el) {
+    el.color == color && el.adjacentTo(stone.x, stone.y);
+  });
+  if( adjacentSameColorGroups.length > 0 ) {
+    var newGroup = $pr.StoneGroup.MergeGroups(adjacentSameColorGroups);
+
+    for( var i = 0; i < adjacentSameColorGroups.length; i++ ) {
+      that.groups.removeGroup(adjacentSameColorGroups[i]);
+    }
+  }
+  else {
+    var ng = new $pr.StoneGroup(color, stone.x, stone.y);
+    that.addGroup(ng);
+  }
+
+  //todo:delete groups with 0 dame
 }
 
 $pr.BoardPosition.prototype.CreateLadder = function() {
