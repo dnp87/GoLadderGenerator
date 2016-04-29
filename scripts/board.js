@@ -114,7 +114,7 @@ $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(stone, color) {
   });
 
   if( adjacentSameColorGroups.length > 0 ) {
-    //merging group(s) with new stone    
+    //merging group(s) with new stone
     var newGroup = $pr.StoneGroup.MergeGroups(adjacentSameColorGroups);
 
     for( var i = 0; i < adjacentSameColorGroups.length; i++ ) {
@@ -129,7 +129,21 @@ $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(stone, color) {
   }
 
   //now delete groups with 0 dame
-  //todo
+  debugger;
+  while(true) {
+    var removeOccured = false;
+    for(var g = 0; g < that.groups.length; g++) {
+      if(that.groups[i].getDameCount() == 0)
+      {
+        that.removeGroup(that.groups[i]);
+        continue;
+      }
+    }
+
+    if(!removeOccured) {
+      break;
+    }
+  }
 }
 
 $pr.BoardPosition.prototype.CreateLadder = function() {
