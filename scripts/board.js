@@ -26,6 +26,20 @@ $pr.BoardPosition.prototype.clone = function() {
   return $.extend(true, {}, that);
 }
 
+$pr.BoardPosition.prototype.removeGroup(group)
+{
+  debugger;
+  var that = this;
+  var ind = that.groups.indexOf(group);
+  if( ind != -1 )
+  {
+       that.body = that.body.filter(function(el, ind, arr) {
+         return group.hasStone(el.x, el.y);
+       });
+       that.groups.splice(ind, 1);
+  }
+}
+
 $pr.BoardPosition.prototype.getPosition = function(x, y) {
 	return this.body[x-1][y-1];
 }
@@ -80,6 +94,7 @@ $pr.BoardPosition.prototype.CalcGroups = function() {
 
 $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(x,y) {
 	//recalculate existing groups
+  groups.pus
 }
 
 $pr.BoardPosition.prototype.CreateLadder = function() {
