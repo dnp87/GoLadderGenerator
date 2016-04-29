@@ -132,9 +132,9 @@ $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(stone, color) {
   while(true) {
     var removeOccured = false;
     for(var g = 0; g < that.groups.length; g++) {
-      if(that.groups[i].getDameCount(that) == 0)
+      if(that.groups[g].getDameCount(that) == 0)
       {
-        that.removeGroup(that.groups[i]);
+        that.removeGroup(that.groups[g]);
         continue;
       }
     }
