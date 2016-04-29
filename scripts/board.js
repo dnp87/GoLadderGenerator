@@ -26,7 +26,7 @@ $pr.BoardPosition.prototype.clone = function() {
   return $.extend(true, {}, that);
 }
 
-$pr.BoardPosition.prototype.removeGroup(group)
+$pr.BoardPosition.prototype.removeGroup = function(group)
 {
   debugger;
   var that = this;
