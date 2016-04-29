@@ -108,24 +108,28 @@ $pr.BoardPosition.prototype.CalcGroups = function() {
 $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(stone, color) {
   var that = this;
 
-  //debugger;
   //choosing groups of the same color adjacent to the new stone;
   var adjacentSameColorGroups = that.groups.filter(function(el) {
-    el.color == color && el.adjacentTo(stone.x, stone.y);
+    return el.color == color && el.adjacentTo(stone.x, stone.y);
   });
+
   if( adjacentSameColorGroups.length > 0 ) {
+    //merging group(s) with new stone    
     var newGroup = $pr.StoneGroup.MergeGroups(adjacentSameColorGroups);
 
     for( var i = 0; i < adjacentSameColorGroups.length; i++ ) {
-      that.groups.removeGroup(adjacentSameColorGroups[i]);
+      that.removeGroup(adjacentSameColorGroups[i]);
     }
+    newGroup.addStone(stone.x, stone.y);
+    that.addGroup(newGroup);
   }
   else {
     var ng = new $pr.StoneGroup(color, stone.x, stone.y);
     that.addGroup(ng);
   }
 
-  //todo:delete groups with 0 dame
+  //now delete groups with 0 dame
+  //todo
 }
 
 $pr.BoardPosition.prototype.CreateLadder = function() {

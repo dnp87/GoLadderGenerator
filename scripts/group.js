@@ -14,14 +14,27 @@ $pr.StoneGroup = function(color, x, y) {
   }
 }
 
-//get dame count for group on a given board
-$pr.StoneGroup.compareStone = function (x, y)
+$pr.StoneGroup.MergeGroups = function(groups) {
+  debugger;
+  var result = new $pr.StoneGroup(groups[0].color);
+
+  for(var i = 0; i < groups.length; i++) {
+    var tmp = groups[i];
+    for(var j = 0; j < tmp.body.length; j++) {
+      result.addStone(tmp.body[j].x, tmp.body[j].y);
+    }
+  }
+  return result;
+}
+
+$pr.StoneGroup.CompareStone = function (x, y)
 {
   return function(elem, index, arr) {
     return elem.x == x && elem.y == y;
   }
 }
 
+//get dame count for group on a given board
 $pr.StoneGroup.prototype.getDameCount = function(board) {
   var that = this;
   var accounted = new Array();
@@ -46,7 +59,7 @@ $pr.StoneGroup.prototype.getDameCount = function(board) {
     for( var j = 0; j < adjPoints.length; j++ )
     {
       var p = adjPoints[j];
-      if(!accounted.some($pr.StoneGroup.compareStone(p.x, p.y))) {
+      if(!accounted.some($pr.StoneGroup.CompareStone(p.x, p.y))) {
         accounted.push(p);
         if( board.getPosition(p.x, p.y) == $pr.BoardPosition.Empty ) {
           result++;
