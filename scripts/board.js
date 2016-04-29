@@ -28,14 +28,15 @@ $pr.BoardPosition.prototype.clone = function() {
 
 $pr.BoardPosition.prototype.removeGroup = function(group)
 {
-  debugger;
   var that = this;
   var ind = that.groups.indexOf(group);
   if( ind != -1 )
   {
-       that.body = that.body.filter(function(el, ind, arr) {
-         return group.hasStone(el.x, el.y);
-       });
+       for( var i = 0; i < group.body.length; i++ )
+       {
+         var p = group.body[i];
+         that.editStone(p.x, p.y, $pr.BoardPosition.Empty);
+       }
        that.groups.splice(ind, 1);
   }
 }
