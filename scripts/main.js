@@ -49,10 +49,12 @@ function placeEditStone(coords)
 
 function placeSolveStone(coords, color)
 {
-  board.ReCalcGroupsAfterStone(coords, color);
-  state.toggleStone();
-  ge.drawBoard();
-  ge.drawStones(board);
+  if(!board.getPosition(coords.x, coords.y)) {
+    board.ReCalcGroupsAfterStone(coords, color);
+    state.toggleStone();
+    ge.drawBoard();
+    ge.drawStones(board);
+  }
 }
 
 function switchUi(mode)
