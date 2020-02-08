@@ -81,6 +81,16 @@ $pr.BoardPosition.prototype.StoneInAnyGroup = function(x, y) {
 	return false;
 }
 
+$pr.BoardPosition.prototype.getLadderGroup = function()
+{
+  // hmm, es6...
+  function isLadderGroup(value, index, array) {
+    return value.isLadderGroup();
+  }
+
+   return this.groups.find(isLadderGroup);
+}
+
 //calculate groups from an empty board
 $pr.BoardPosition.prototype.CalcGroups = function() {
 	var that = this;

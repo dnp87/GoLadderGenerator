@@ -30,6 +30,7 @@ $(document).ready(function()
   })
 
   board.CreateLadder();
+  board.CalcGroups();
   ge.drawBoard();
   ge.drawStones(board);
 });
