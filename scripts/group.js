@@ -35,17 +35,22 @@ $pr.StoneGroup.CompareStone = function (x, y)
 
 //get dame count for group on a given board
 $pr.StoneGroup.prototype.getDameCount = function(board) {
+  return this.getEmptyAdjacentPoints(board).length;
+}
+
+$pr.StoneGroup.prototype.getEmptyAdjacentPoints = function(board) {
   if(!board) {
     console.log("board position not specified");
     return;
   }
   var that = this;
   var accounted = new Array();
-  var result = 0;
+  var result = new Array();
 
   for( var i = 0; i < that.body.length; i++ ) {
     var el = that.body[i];
     var adjPoints = new Array();
+
     if( el.x > 1) {
       adjPoints.push({ x: el.x - 1, y: el.y });
     }
@@ -65,7 +70,7 @@ $pr.StoneGroup.prototype.getDameCount = function(board) {
       if(!accounted.some($pr.StoneGroup.CompareStone(p.x, p.y))) {
         accounted.push(p);
         if( board.getPosition(p.x, p.y) == $pr.BoardPosition.Empty ) {
-          result++;
+          result.push({x: p.x, y: p.y})
         }
       }
     }
