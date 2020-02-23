@@ -34,29 +34,36 @@ $pr.SimpleSolver.prototype.getNextWhiteMove = function(boardPosition)
 {
     let that = this;
     let moves = that.getNextWhiteMoves(boardPosition);
-    let maxDame = Math.max(moves.map(c => c.dame));
+    let maxDame = Math.max(...moves.map(c => c.dame));
     return moves.filter(v => v.dame == maxDame)[0];
 }
 
 // possible B's moves with ladder group dame count. TODO: make it private?
 $pr.SimpleSolver.prototype.getNextBlackMoves = function(boardPosition)
 {
+    var ladderGroup = boardPosition.getLadderGroup();
     var result = new Array();
 
-    var candidates = ladderGroup.getEmptyAdjacentPoints(boardPosition);
+    let candidates = ladderGroup.getEmptyAdjacentPoints(boardPosition);
+    let initialDameCount = boardPosition.getLadderGroup(boardPosition).getDameCount(boardPosition);
     for (let i = 0; i < candidates.length; i++)
     {
         let candidate = candidates[i];
-        let initialDameCount = boardPosition.getLadderGroup(boardPosition).getDameCount(boardPosition);
         let boardPlusMove = boardPosition.clone(); 
 
         boardPlusMove.ReCalcGroupsAfterStone(candidate, $pr.BoardPosition.BlackStone);
-        if (boardPlusMove.getLadderGroup(boardPlusMove).getDameCount(boardPlusMove) < initialDameCount)
+        let plusOneLadderGroup = boardPlusMove.getLadderGroup(boardPlusMove);
+
+        if(plusOneLadderGroup == null)
+        {
+            result.push({point: candidate, dameOnPlusOne: 0});
+        }
+        else if (plusOneLadderGroup.getDameCount(boardPlusMove) < initialDameCount)
         {
             let whiteCands = this.getNextWhiteMoves(boardPlusMove);
             let maxWhiteDame =  Math.max(whiteCands.map(wc => wc.dame));
 
-            result.push({point: candidate, dame: maxWhiteDame});
+            result.push({point: candidate, dameOnPlusOne: maxWhiteDame});
         }
     }
 
@@ -68,8 +75,8 @@ $pr.SimpleSolver.prototype.getNextBlackMove = function(boardPosition)
 {
     let that = this;
     let moves = that.getNextBlackMoves(boardPosition);
-    let minDame = Math.min(moves.map(c => c.dame));
-    return moves.filter(v => v.dame == maxDame)[0];
+    let minDame = Math.min(...moves.map(c => c.dameOnPlusOne));
+    return moves.filter(v => v.dameOnPlusOne == minDame)[0];
 }
 
 // pass here boardPosition's clone in order to get possible ladder solution
