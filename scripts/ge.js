@@ -35,15 +35,27 @@ $pr.GraphicsEngine.prototype.drawBoard = function() {
 		ctx.lineTo(that.canvas.width - that.gridOffset, that.gridOffset + step*i  + 0.5);
 		ctx.stroke();
 		ctx.closePath();
+		
+		if(i < 19)
+		{
+			// debug coords print
+			ctx.fillText(i+1, that.gridOffset - step/2, that.gridOffset + step*(i+0.1) + 0.5);
+		}
 	}
 
 	//vertical lines
 	for( var i = 0; i < 20; i++ ) {
 		ctx.beginPath();
-		ctx.moveTo(that.gridOffset + step*i + 0.5, that.gridOffset );
+		ctx.moveTo(that.gridOffset + step*i + 0.5, that.gridOffset);
 		ctx.lineTo(that.gridOffset + step*i  + 0.5, that.canvas.height - that.gridOffset);
 		ctx.stroke();
 		ctx.closePath();
+
+		if(i < 19)
+		{
+			// debug coords print
+			ctx.fillText(i+1, that.gridOffset + step*(i-0.1) + 0.5, that.gridOffset - step/4);
+		}
 	}
 
 	//star points

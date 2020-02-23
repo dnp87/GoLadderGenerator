@@ -29,6 +29,11 @@ $(document).ready(function()
     switchUi(state.mode);
   })
 
+  $("#solve_for_me_btn").click(function()
+  {
+    alert('coming soon!');
+  })
+
   board.CreateLadder();
   board.CalcGroups();
   ge.drawBoard();

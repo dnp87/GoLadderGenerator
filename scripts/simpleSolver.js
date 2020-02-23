@@ -83,6 +83,31 @@ $pr.SimpleSolver.prototype.getNextBlackMove = function(boardPosition)
 $pr.SimpleSolver.prototype.getSolutionPath = function(boardPosition)
 {
     var ladderGroup = boardPosition.getLadderGroup();
-    // возвращаем здесь массив точек до решения, успешного или нет...
-    return true;
+    let finish = false;
+    let path = new Array();
+    let nextIsBlack = true;
+    //B to play...
+
+    let pathPosition = boardPosition.clone();
+
+    while(!finish)
+    {
+        let pathPoint = nextIsBlack ? this.getNextBlackMove(pathPosition) : this.getNextWhiteMove(pathPosition);        
+        let nextStone = nextIsBlack ? $pr.BoardPosition.BlackStone : $pr.BoardPosition.WhiteStone;
+
+        if (pathPoint == null)
+        {
+            finish = true;
+        }
+        else
+        {
+            path.push(pathPoint);
+            pathPosition.editStone(pathPoint.x, pathPoint.y, nextStone);
+            pathPosition.ReCalcGroupsAfterStone(pathPoint, nextStone);
+        }
+
+        nextIsBlack = !nextIsBlack;
+        finish = true; //debug
+    }
+    return path;
 }
