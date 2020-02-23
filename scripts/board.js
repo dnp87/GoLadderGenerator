@@ -93,9 +93,11 @@ $pr.BoardPosition.prototype.getLadderGroup = function()
 
 //calculate groups from an empty board
 $pr.BoardPosition.prototype.CalcGroups = function() {
-	var that = this;
-	for( var x = 1; x <= that.body.length; x++ ) {
-		for( var y = 1; y < that.body[x-1].length; y++ ) {
+  var that = this;
+  that.groups = new Array();
+
+   for( var x = 1; x <= that.body.length; x++ ) {
+      for( var y = 1; y < that.body[x-1].length; y++ ) {
       var st = that.getPosition(x, y);
       if (st) {
         var groupFound = false;
@@ -104,6 +106,7 @@ $pr.BoardPosition.prototype.CalcGroups = function() {
           if(group.color == st && group.adjacentTo(x, y)) {
             group.addStone(x, y);
             groupFound = true;
+            break;
           }
         }
         if(!groupFound) {
@@ -163,5 +166,5 @@ $pr.BoardPosition.prototype.CreateLadder = function() {
 	that.editStone(5, 17, $pr.BoardPosition.BlackStone);
 
 	that.editStone(4, 16, $pr.BoardPosition.WhiteStone);
-	that.editStone(5, 16, $pr.BoardPosition.WhiteStone);
+  that.editStone(5, 16, $pr.BoardPosition.WhiteStone);
 }
