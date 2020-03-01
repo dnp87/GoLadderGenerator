@@ -31,7 +31,10 @@ $(document).ready(function()
 
   $("#solve_for_me_btn").click(function()
   {
-    alert('coming soon!');
+    var solver = new $pr.SimpleSolver(board);
+    var path = solver.getSolutionPath(board);
+
+    //todo: play it out with delay
   })
 
   board.CreateLadder();

@@ -10,8 +10,12 @@ $pr.SimpleSolver = function()
 // possible W's moves with ladder group dame count. TODO: make it private?
 $pr.SimpleSolver.prototype.getNextWhiteMoves = function(boardPosition)
 {
-    var ladderGroup = boardPosition.getLadderGroup();
+    var ladderGroup = boardPosition.getLadderGroup();    
+
     var result = new Array();
+    if (ladderGroup == null) {
+        return result;
+    }
 
     // candidates: empty board points ajacent to ladder
     var candidates = ladderGroup.getEmptyAdjacentPoints(boardPosition);
@@ -43,6 +47,10 @@ $pr.SimpleSolver.prototype.getNextBlackMoves = function(boardPosition)
 {
     var ladderGroup = boardPosition.getLadderGroup();
     var result = new Array();
+
+    if (ladderGroup.getDameCount(boardPosition) > 2) {
+        return result;
+    }
 
     let candidates = ladderGroup.getEmptyAdjacentPoints(boardPosition);
     let initialDameCount = boardPosition.getLadderGroup(boardPosition).getDameCount(boardPosition);
@@ -103,11 +111,10 @@ $pr.SimpleSolver.prototype.getSolutionPath = function(boardPosition)
         {
             path.push(pathPoint);
             //pathPosition.editStone(pathPoint.x, pathPoint.y, nextStone);
-            pathPosition.ReCalcGroupsAfterStone(pathPoint, nextStone);
+            pathPosition.ReCalcGroupsAfterStone(pathPoint.point, nextStone);
         }
 
         nextIsBlack = !nextIsBlack;
-        finish = true; //debug
     }
     return path;
 }
