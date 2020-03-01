@@ -35,20 +35,35 @@ $(document).ready(function()
     switchUi(state.mode);
   })
 
+  function doMoves(path, delay)
+  {
+    var nextIsBlack = true;
+    var i = 0;
+
+    doMove = function()
+    {
+      placeSolveStone(path[i], nextIsBlack ? $pr.BoardPosition.BlackStone : $pr.BoardPosition.WhiteStone);
+      nextIsBlack = !nextIsBlack;
+      i++;
+
+      if(i < path.length)
+      {
+        setTimeout(doMove, delay);
+      }
+    }
+
+    doMove();
+  }
+
   $("#solve_for_me_btn").click(function()
   {
     let solver = new $pr.SimpleSolver(board);
     let path = solver.getSolutionPath(board);
-    let nextIsBlack = true;
-
-    let delay = 300;
-    for(let i = 0; i < path.length; i++){
-      let nextStone = nextIsBlack ? $pr.BoardPosition.BlackStone : $pr.BoardPosition.WhiteStone;
-      placeSolveStone(path[i], nextStone);
-      nextIsBlack = !nextIsBlack;
-      sleep(delay);
-    }
+    
+    doMoves(path, 300);
   })
+
+
 
   board.CreateLadder();
   board.CalcGroups();
