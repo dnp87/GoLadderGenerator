@@ -3,6 +3,12 @@ var cng;
 var ge;
 var board;
 
+//hackaround
+function sleep(ms) {
+  ms += new Date().getTime();
+  while (new Date() < ms){}
+} 
+
 $(document).ready(function()
 {
   state = new $pr.State();
@@ -31,10 +37,17 @@ $(document).ready(function()
 
   $("#solve_for_me_btn").click(function()
   {
-    var solver = new $pr.SimpleSolver(board);
-    var path = solver.getSolutionPath(board);
+    let solver = new $pr.SimpleSolver(board);
+    let path = solver.getSolutionPath(board);
+    let nextIsBlack = true;
 
-    //todo: play it out with delay
+    let delay = 300;
+    for(let i = 0; i < path.length; i++){
+      let nextStone = nextIsBlack ? $pr.BoardPosition.BlackStone : $pr.BoardPosition.WhiteStone;
+      placeSolveStone(path[i], nextStone);
+      nextIsBlack = !nextIsBlack;
+      sleep(delay);
+    }
   })
 
   board.CreateLadder();

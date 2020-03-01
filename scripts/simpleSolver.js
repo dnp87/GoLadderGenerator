@@ -109,7 +109,7 @@ $pr.SimpleSolver.prototype.getSolutionPath = function(boardPosition)
         }
         else
         {
-            path.push(pathPoint);
+            path.push(pathPoint.point);
             //pathPosition.editStone(pathPoint.x, pathPoint.y, nextStone);
             pathPosition.ReCalcGroupsAfterStone(pathPoint.point, nextStone);
         }
