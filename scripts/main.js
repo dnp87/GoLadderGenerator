@@ -52,11 +52,14 @@ $(document).ready(function()
       }
     }
 
-    doMove();
+    if(path.length > 0) {
+      doMove();
+    }    
   }
 
   $("#solve_for_me_btn").click(function()
   {
+    board.CalcGroups();
     let solver = new $pr.SimpleSolver(board);
     let path = solver.getSolutionPath(board);
     
