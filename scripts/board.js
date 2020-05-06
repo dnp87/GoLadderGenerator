@@ -96,6 +96,12 @@ $pr.BoardPosition.prototype.CalcGroups = function() {
   var that = this;
   that.groups = new Array();
 
+   // todo: fix this. Algorithms needs to merge groups after calc.
+   // faulty: scenario is empty triangle group 
+   //  *  - stone A
+  //  ** - stones B, C
+  // where stones A and B are initially considered to be in different groups
+  // since they have no KNOWN common neighhbout at the time of calculation
    for( var x = 1; x <= that.body.length; x++ ) {
       for( var y = 1; y < that.body[x-1].length; y++ ) {
       var st = that.getPosition(x, y);
@@ -160,11 +166,12 @@ $pr.BoardPosition.prototype.ReCalcGroupsAfterStone = function(stone, color) {
 
 $pr.BoardPosition.prototype.CreateLadder = function() {
 	var that = this;
-	that.editStone(4, 15, $pr.BoardPosition.BlackStone);
-	that.editStone(3, 16, $pr.BoardPosition.BlackStone);
-	that.editStone(4, 17, $pr.BoardPosition.BlackStone);
-	that.editStone(5, 17, $pr.BoardPosition.BlackStone);
+    //that.editStone(4, 15, $pr.BoardPosition.BlackStone);
+    //that.editStone(3, 16, $pr.BoardPosition.BlackStone);
+    //that.editStone(4, 17, $pr.BoardPosition.BlackStone);
+    //that.editStone(5, 17, $pr.BoardPosition.BlackStone);
 
-	that.editStone(4, 16, $pr.BoardPosition.WhiteStone);
+  that.editStone(4, 16, $pr.BoardPosition.WhiteStone);
   that.editStone(5, 16, $pr.BoardPosition.WhiteStone);
+  that.editStone(5, 15, $pr.BoardPosition.WhiteStone);
 }
